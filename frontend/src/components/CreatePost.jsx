@@ -40,9 +40,10 @@ export default function CreatePost({ onPost }) {
 
   return (
     <form className="create-post" onSubmit={handleSubmit}>
-      <textarea placeholder="What's on your mind?" value={text} onChange={e => setText(e.target.value)} />
-      <input type="file" accept="image/*" onChange={e => setImage(e.target.files[0])} />
+      <textarea placeholder="What's on your mind?" value={text} onChange={e => setText(e.target.value)} disabled={loading} />
+      <input type="file" accept="image/*" onChange={e => setImage(e.target.files[0])} disabled={loading} />
       <button type="submit" disabled={loading}>{loading ? 'Posting...' : 'Post'}</button>
+      {loading && <div className="loading-spinner" style={{marginTop:8}}>Loading...</div>}
       {error && <div className="error">{error}</div>}
     </form>
   );

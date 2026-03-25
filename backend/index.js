@@ -15,7 +15,9 @@ console.log('Loaded environment variables:', {
   PORT: process.env.PORT || 5000
 });
 const app = express();
-app.use(cors());
+app.use(cors(
+    allowlist = [process.env.FRONTEND_URL || 'http://localhost:5173']
+));
 app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/posts', postRoutes);

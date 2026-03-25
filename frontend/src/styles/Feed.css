@@ -1,0 +1,78 @@
+.feed {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 500px;
+  margin: 32px auto 0 auto;
+}
+
+.post-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 20px 24px 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.post-header {
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 1.1rem;
+  margin-bottom: 2px;
+}
+
+.post-text {
+  font-size: 1rem;
+  color: var(--text-h);
+  margin-bottom: 4px;
+}
+
+.post-img {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 8px 0;
+  border: 1px solid var(--border);
+}
+
+.post-meta {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.post-meta button {
+  background: var(--accent-bg);
+  color: var(--accent);
+  border: 1px solid var(--accent-border);
+  border-radius: 6px;
+  padding: 4px 14px;
+  font-size: 0.98rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.post-meta button.liked {
+  background: var(--accent);
+  color: #fff;
+}
+.post-meta button:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+  .feed, .post-card {
+    max-width: 98vw;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .post-img {
+    max-height: 180px;
+  }
+}

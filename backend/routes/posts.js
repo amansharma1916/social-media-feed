@@ -49,10 +49,23 @@ router.post('/', auth, upload.single('image'), async (req, res) => {
   }
 });
 
+// GET /api/posts?page=1&limit=10
 router.get('/', async (req, res) => {
   try {
-    const posts = await Post.find().sort({ createdAt: -1 });
-    res.json(posts);
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
+    const total = await Post.countDocuments();
+    const posts = await Post.find()
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
+    res.json({
+      posts,
+      page,
+      totalPages: Math.ceil(total / limit),
+      total
+    });
   } catch (err) {
     res.status(500).json({ message: 'Server error' });
   }
